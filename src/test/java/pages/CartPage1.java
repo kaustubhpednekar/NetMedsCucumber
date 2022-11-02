@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 public class CartPage1 {
-	WebDriver driver;
+	//WebDriver driver;
 	String text;
 	
 	public  CartPage1(WebDriver driver) {
@@ -34,11 +34,14 @@ public class CartPage1 {
 		@FindBy(xpath="//*[@id='itemid-347798']/div[2]/div[3]/div[2]/a[1]")
 		WebElement Removebutton1;
 		@FindBy(xpath="//*[@id='itemid-889019']/div[2]/div[3]/div[2]/a[1]")
+		//*[@id="itemid-889019"]/div[2]/div[3]/div[2]/a[1]
+		//*[@id="itemid-940242"]/div[2]/div[3]/div[2]/a[1]
+		//*[@id="itemid-940242"]/div[2]/div[3]/div[2]/a[1]
 		WebElement Removebutton2;
 		@FindBy(xpath="/html/body")
 		WebElement Genericplace;
-		
-		
+		@FindBy(xpath="//*[contains(@id,'itemid')]")
+		WebElement RemovebuttonAll;
   
   public void Carlinkclick() throws InterruptedException {
 	  //Clicking on the cart link
@@ -46,11 +49,11 @@ public class CartPage1 {
 	  //Scrolling down till proceed button
 	 
   }
-  public void ProceedBtnclick() {
+  public void ProceedBtnclick(WebDriver driver) {
 	  JavascriptExecutor js=(JavascriptExecutor) driver;
 	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	
-      WebElement filters= driver.findElement(By.xpath("//*[@id=\"app\"]/main/app-shopping-cart/div[1]/div/div/div[2]/div[3]/div[1]/div[2]/div[2]/button"));
+      WebElement filters= proceedBtn;
       js.executeScript("arguments[0].scrollIntoView()", filters);
       //Clicking on the proceed button
       proceedBtn.click();
@@ -62,6 +65,12 @@ public class CartPage1 {
   }
   public void Removebutton2Click() {
 	  Removebutton2.click();
+	    
+  }
+  public void RemovebuttonAllClick() {
+	 if  (RemovebuttonAll.isDisplayed()) {
+		 RemovebuttonAll.click();
+	 };
 	    
   }
   public void GenericPlaceClick() {
@@ -77,7 +86,5 @@ public class CartPage1 {
 	  }
 		  
   }
-  
+
 }
-
-

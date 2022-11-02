@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 public class Logout {
 
 	//*[@id=\"page-header\"]/div/div/div[5]/a
-	WebDriver driver;
+	//WebDriver driver;
 	String text;
 	
 	public  Logout(WebDriver driver) {
@@ -22,7 +22,7 @@ public class Logout {
 	 
 		@FindBy(xpath="//*[@id=\"page-header\"]/div/div/div[5]/a/span")
 		WebElement userLogout;
-		@FindBy(xpath="//*[@id=\"app\"]/main/app-account/div[1]/div[3]/div[1]/left-menu/div/div/a[14]")
+		@FindBy(xpath="//*[@id=\'app\']/main/app-account/div[1]/div[3]/div[1]/left-menu/div/div/a[14]")
 		////*[@id="app"]/main/app-account/div[1]/div[3]/div[1]/left-menu/div/div/a[14]
 		WebElement logoutbtn;
 		 public void userLogoutClick() throws InterruptedException {
@@ -31,11 +31,12 @@ public class Logout {
 			  //Scrolling down till proceed button
 			 
 		  }
-		 public void logoutClick() throws InterruptedException {
+		 public void logoutClick(WebDriver driver) throws InterruptedException {
 			  //Clicking on the cart link
 			 JavascriptExecutor js=(JavascriptExecutor) driver;
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		  // WebElement lgout= driver.findElement(By.xpath("//*[@id=\"app\"]/main/app-account/div[1]/div[3]/div[1]/left-menu/div/div/a[14]"));
+			//*[@id="app"]/main/app-account/div[1]/div[3]/div[1]/left-menu/div/div/a[14]
 		   js.executeScript("arguments[0].scrollIntoView()", logoutbtn);
 		   Thread.sleep(5000);
 		   logoutbtn.click();

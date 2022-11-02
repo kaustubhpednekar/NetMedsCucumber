@@ -43,7 +43,7 @@ Logout LP;
 			loginpg=new LoginPage(driver);
 			loginpg.clickSignIn();
 			Thread.sleep(5000);
-			loginpg.enterTel("9686266442");
+			loginpg.enterTel("9121862790");
 			
 //			driver.findElement(By.linkText("Sign in / Sign up")).click();
 //		      
@@ -132,14 +132,28 @@ Logout LP;
 		@Then("user adds beauty product to cart")
 		public void user_adds_beauty_product_to_cart() throws InterruptedException {
 			
-			beautypg = new BeautyPage(driver);
-			Thread.sleep(5000);
-			beautypg.clickdropdown(driver);
-			Thread.sleep(5000);
-			beautypg.choose_haircare(driver);			
-			beautypg.check_exclude_out_of_stock(driver);
-			Thread.sleep(3000);
-			beautypg.added_cart(driver);
+			beautypg=new BeautyPage(driver);
+            Thread.sleep(5000);
+//             Actions act = new Actions(driver);
+//           WebElement mainMenu = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/ul/li[1]"));
+//          act.moveToElement(mainMenu).build().perform();
+            beautypg.clickdropdown(driver);
+            Thread.sleep(30000);
+            //driver.findElement(By.xpath("//*[@id=\"webklipper-publisher-widget-container-notification-close-div\"] "));
+            //Thread.sleep(15000);
+            beautypg.scrollingHairProduct(driver);
+            Thread.sleep(10000);
+            // beautypg.choose_haircare();
+            beautypg.check_exclude_out_of_stock(driver);
+            Thread.sleep(5000);
+        //    beautypg.();
+            beautypg.clickProduct(driver);
+            Thread.sleep(5000);
+            beautypg.scrollingcart(driver);
+            beautypg.selectPinCode1();
+            beautypg.clickArrowBtn1();
+            beautypg.clickAddToCart1();
+		}
 //			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 //			  
 //			  Actions act=new Actions(driver);
@@ -164,60 +178,64 @@ Logout LP;
 //		      driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 //		      driver.findElement(By.xpath("//*[@id=\"algolia_hits\"]/div/div/ol/li[1]/div/form/button")).click();
 		    
-		}
+		//}
 
 		
 
 		@When("Order is placed")
-		public void order_is_placed() {
-		    System.out.println("Oder places SuccessFully");
-		}
-		@When("User is on the cart page")
-		public void user_is_on_the_cart_page() throws InterruptedException {
-		     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-		      //CartPage c1=PageFactory.initElements(driver, CartPage.class);
-		      CP=new CartPage1(driver);
-		      CP.Carlinkclick();
-//		      Screenshot s=new AShot().takeScreenshot(driver);
-//		        try {
-//		            ImageIO.write(s.getImage(), "PNG", new File("C:\\Users\\Administrator\\JavaWorkspace\\NetMedsProject\\target\\img3.png"));
-//		        }catch (IOException e) {
-//		            e.printStackTrace();
-//		        }
-//		        test.pass(MediaEntityBuilder.createScreenCaptureFromPath("C:\\Users\\Administrator\\JavaWorkspace\\NetMedsProject\\target\\img3.png").build());
-//		        String actualoutput = "Netmeds.com: Indian Online Pharmacy | Buy Medicines Online, Fast Delivery";
-//		        ExpectedOutput=driver.getTitle();
-//		        Assert.assertEquals(ExpectedOutput, actualoutput);
-		}
+        public void order_is_placed() {
+            System.out.println("Oder places SuccessFully");
+        }
+        @When("User is on the cart page")
+        public void user_is_on_the_cart_page() throws InterruptedException {
+             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+              //CartPage c1=PageFactory.initElements(driver, CartPage.class);
+              CP=new CartPage1(driver);
+              CP.Carlinkclick();
+//              Screenshot s=new AShot().takeScreenshot(driver);
+//                try {
+//                    ImageIO.write(s.getImage(), "PNG", new File("C:\\Users\\Administrator\\JavaWorkspace\\NetMedsProject\\target\\img3.png"));
+//                }catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                test.pass(MediaEntityBuilder.createScreenCaptureFromPath("C:\\Users\\Administrator\\JavaWorkspace\\NetMedsProject\\target\\img3.png").build());
+//                String actualoutput = "Netmeds.com: Indian Online Pharmacy | Buy Medicines Online, Fast Delivery";
+//                ExpectedOutput=driver.getTitle();
+//                Assert.assertEquals(ExpectedOutput, actualoutput);
+        }
 
-		@When("User clicks on Proceed button and navigates to cartpage")
-		public void user_is_navigated_to_cart_review_page() throws InterruptedException {		    
-		  
-		    CP.ProceedBtnclick();
-		    CP.GenericPlaceClick();
-		    //Navigating to Cartpage
-		    driver.navigate().to("https://www.netmeds.com/checkout/cart");
-		      
-		     
-		}
-		@Then("Removes Items in the cart and Logsout")
-		public void Removes_Items_in_the_cart_and_Logsout() throws InterruptedException {
-		    
-			Thread.sleep(5000);
-		      CP.Removebutton1Click();
-		      driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		      CP.Removebutton2Click();
-		      driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));                    
-		      LP=new Logout(driver);
-		      LP.userLogoutClick();
-		      driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		      LP.logoutClick();
-//		      String actualoutput = "Netmeds Sign In / Sign Up";
-//		      ExpectedOutput=driver.getTitle();
-//		      Assert.assertEquals(ExpectedOutput, actualoutput);
-		      driver.quit();
-		      //report.flush();
-		}
+        @When("User clicks on Proceed button and navigates to cartpage")
+        public void user_is_navigated_to_cart_review_page() throws InterruptedException {            
+          
+            CP.ProceedBtnclick(driver);
+            CP.GenericPlaceClick();
+            //Navigating to Cartpage
+            driver.navigate().to("https://www.netmeds.com/checkout/cart");
+              
+             
+        }
+        @Then("Removes Items in the cart and Logsout")
+        public void Removes_Items_in_the_cart_and_Logsout() throws InterruptedException {
+            
+              Thread.sleep(5000);
+              CP.Removebutton2Click();
+              driver.navigate().refresh();
+              driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+              CP.Removebutton1Click();
+              driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));                    
+              LP=new Logout(driver);
+              Thread.sleep(5000);
+              LP.userLogoutClick();
+              driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+              Thread.sleep(5000);
+              LP.logoutClick(driver);
+//              String actualoutput = "Netmeds Sign In / Sign Up";
+//              ExpectedOutput=driver.getTitle();
+//              Assert.assertEquals(ExpectedOutput, actualoutput);
+              driver.quit();
+              //report.flush();
+        }
+
 
 
 
