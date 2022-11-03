@@ -40,6 +40,7 @@ public class Logout {
 		   js.executeScript("arguments[0].scrollIntoView()", logoutbtn);
 		   Thread.sleep(5000);
 		   logoutbtn.click();
+			 System.out.println("Logout Successful");
 			 
 		  }
 }
