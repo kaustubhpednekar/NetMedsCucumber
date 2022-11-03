@@ -32,7 +32,7 @@ Logout LP;
 	WebDriver driver;
 		@Given("User is on Netmeds homepage")
 		public void user_is_on_netmeds_homepage() {
-			 System.setProperty("webdriver.chrome.driver","C:\\drivers\\chromeDriver106\\chromedriver.exe");
+			 System.setProperty("webdriver.chrome.driver","C:\\kaustubh\\drivers\\chromedrive\\chromedriver.exe");
 			    driver=new ChromeDriver();
 				driver.get("https://www.netmeds.com/");
 				driver.manage().window().maximize();
@@ -43,7 +43,7 @@ Logout LP;
 			loginpg=new LoginPage(driver);
 			loginpg.clickSignIn();
 			Thread.sleep(5000);
-			loginpg.enterTel("9121862790");
+			loginpg.enterTel("7411920347");
 			
 //			driver.findElement(By.linkText("Sign in / Sign up")).click();
 //		      
